@@ -13,7 +13,7 @@ public class Pion extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
 		final int lastY = getColor() == Couleur.BLANC ? 0 : 7 ; // Opérateur Ternaire

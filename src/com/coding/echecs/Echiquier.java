@@ -11,13 +11,39 @@ public class Echiquier {
 	
 	public void init () {
 		for (int i = 0; i <= 7; i++) {
+			
 			/* Initialisation des pions */
 			echiquier[1][i] = Pion.NOIR;
 			echiquier[6][i] = Pion.BLANC;
 			
-			/* Initialisation des rois */
-			echiquier[0][i] = Roi.NOIR;
-			echiquier[7][i] = Roi.BLANC;
+			/* Placement des tours */
+			if (i == 0 || i == 7) {
+				echiquier[0][i] = Tour.NOIR;
+				echiquier[7][i] = Tour.BLANC;
+			}
+			
+			/* Placement des cavaliers */
+			if (i == 1 || i == 6) {
+				echiquier[0][i] = Cavalier.NOIR;
+				echiquier[7][i] = Cavalier.BLANC;
+			}
+			
+			/* Placement des fous */
+			if (i == 2 || i == 5) {
+				echiquier[0][i] = Fou.NOIR;
+				echiquier[7][i] = Fou.BLANC;
+			}
+			
+			/* Placement des rois et reines*/
+			if (i == 3 || i == 4) {
+				if (i == 3) {	
+					echiquier[0][i] = Roi.NOIR; 
+					echiquier[0][i + 1] = Reine.NOIR; 
+				} else if (i == 4) {
+					echiquier[7][i] = Roi.BLANC;
+					echiquier[7][i - 1] = Reine.BLANC;
+				}
+			}
 		}
 	}
 	
@@ -27,10 +53,11 @@ public class Echiquier {
 	
 	public boolean moveTo(Coordonnees origin, Coordonnees destination) {
 		final Piece pieceABouger = getPieceEn(origin); // Récupération des coordonnées d'origine
+		final Echiquier e = new Echiquier();
 		
 		if (pieceABouger == null) { return false; }
 		
-		List<Coordonnees> deplacementsPossibles = pieceABouger.canMove(origin); // Stockage des différents coups possibles
+		List<Coordonnees> deplacementsPossibles = pieceABouger.canMove(origin, e); // Stockage des différents coups possibles
 		
 		// for (int i ; i <= deplacementsPossibles.size(); i++) { Coordonnees actual = deplacementsPossibles.get(i); ... }
 		for (Coordonnees actual : deplacementsPossibles) {

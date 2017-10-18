@@ -14,16 +14,32 @@ public class Reine extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
 		final ArrayList<Coordonnees> result = new ArrayList<>();
 		
-		final int lastX = origin.getX() == 0 ? 0 : 7;
-		final int lastY = origin.getY() == 0 ? 0 : 7;
-	
-		if (origin.getX() != lastX || origin.getY() != lastY) {
-			
-		}
+		int i = 0;
+		int n = 1;
 		
+		while (i <= 7 && n <= 8) {
+			/* Déplacements correspondant a la tour */
+			checkPosition(origin.getX() - i, origin.getY()	 , result);
+			checkPosition(origin.getX() + i, origin.getY()    , result);
+			checkPosition(origin.getX()    , origin.getY() - i, result);
+			checkPosition(origin.getX()    , origin.getY() + i, result);
+			/* Déplacements correspondant au fou */
+			checkPosition(origin.getX() - n, origin.getY() + n, result);
+			checkPosition(origin.getX() + n, origin.getY() - n, result);
+			checkPosition(origin.getX() + n, origin.getY() + n, result);
+			checkPosition(origin.getX() - n, origin.getY() - n, result);
+			i++;
+			n++;
+		}
 		return result;
+	}
+	
+	private void checkPosition(int x, int y, List<Coordonnees> result) {
+		if (isInside(x,y)) {
+			result.add(new Coordonnees(x, y));
+		}
 	}
 }
