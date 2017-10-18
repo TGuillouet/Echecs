@@ -10,7 +10,7 @@ public class Tour extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> move(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin) {
 		final ArrayList<Coordonnees> result = new ArrayList<>();
 		
 		

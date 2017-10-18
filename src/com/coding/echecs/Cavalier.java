@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cavalier extends Piece{
+	
 	protected Cavalier(Couleur pColor) {
 		super(pColor);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	List<Coordonnees> move(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin) {
 		final ArrayList<Coordonnees> result = new ArrayList<>();
 		
 		checkPosition(origin.getX() - 1, origin.getY() - 2, result);

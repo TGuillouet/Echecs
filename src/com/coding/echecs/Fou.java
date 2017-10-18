@@ -10,7 +10,7 @@ public class Fou extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> move(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
 		int x = origin.getX(),

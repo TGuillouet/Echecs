@@ -5,12 +5,16 @@ import java.util.List;
 
 
 public class Roi extends Piece{
-	protected Roi(Couleur pColor) {
+	
+	public static Roi BLANC = new Roi(Couleur.BLANC);
+	public static Roi NOIR = new Roi(Couleur.NOIR);
+	
+	private Roi(Couleur pColor) {
 		super(pColor);
 	}
 
 	@Override
-	List<Coordonnees> move(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
 		checkPosition(origin.getX() - 1, origin.getY() - 1, result);

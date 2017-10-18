@@ -2,14 +2,12 @@ package com.coding.echecs;
 
 import java.util.List;
 
-enum Couleur { NOIR, BLANC }
-
 public abstract class Piece {
 	/* Attributs */
 	private final Couleur color;
 		
 	/* Signatures de méthodes */
-	abstract List<Coordonnees> move(Coordonnees origin); // Liste avec une taille non fixe
+	abstract List<Coordonnees> canMove(Coordonnees origin); // Liste avec une taille non fixe
 	
 	/* Constructeur */
 	protected Piece (Couleur pColor) {

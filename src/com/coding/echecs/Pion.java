@@ -4,12 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pion extends Piece{
-	protected Pion(Couleur pColor) {
+	
+	public static Pion BLANC = new Pion(Couleur.BLANC);
+	public static Pion NOIR = new Pion(Couleur.NOIR);
+	
+	private Pion(Couleur pColor) {
 		super(pColor);
 	}
 
 	@Override
-	List<Coordonnees> move(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
 		final int lastY = getColor() == Couleur.BLANC ? 0 : 7 ; // Opérateur Ternaire
