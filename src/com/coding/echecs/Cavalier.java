@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Cavalier extends Piece{
+	public static Cavalier BLANC = new Cavalier(Couleur.BLANC);
+	public static Cavalier NOIR = new Cavalier(Couleur.NOIR);
 	
 	protected Cavalier(Couleur pColor) {
 		super(pColor);
@@ -11,7 +13,7 @@ public class Cavalier extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
 		final ArrayList<Coordonnees> result = new ArrayList<>();
 		
 		checkPosition(origin.getX() - 1, origin.getY() - 2, result);

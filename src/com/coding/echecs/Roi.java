@@ -14,7 +14,7 @@ public class Roi extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin) {
+	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
 		checkPosition(origin.getX() - 1, origin.getY() - 1, result);
