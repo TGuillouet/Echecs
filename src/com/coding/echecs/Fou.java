@@ -17,13 +17,22 @@ public class Fou extends Piece{
 	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
-		int n = 1;
-		while (n <= 7) {
+		int n;
+		
+		for (n = 1; n <= 7; n++) {
 			checkPosition(origin.getX() + n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
 			checkPosition(origin.getX() + n, origin.getY() + n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
 			checkPosition(origin.getX() - n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
 			checkPosition(origin.getX() - n, origin.getY() + n, result);
-			n++;
 		}
 		
 		return result;

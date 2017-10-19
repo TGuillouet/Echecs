@@ -17,28 +17,46 @@ public class Reine extends Piece{
 	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
 		final ArrayList<Coordonnees> result = new ArrayList<>();
 		
-		int i = 0;
-		int n = 1;
+		int n;
 		
-		while (i <= 7 && n <= 8) {
-			/* Déplacements correspondant a la tour */
-			checkPosition(origin.getX() - i, origin.getY()	 , result);
-			checkPosition(origin.getX() + i, origin.getY()    , result);
-			checkPosition(origin.getX()    , origin.getY() - i, result);
-			checkPosition(origin.getX()    , origin.getY() + i, result);
-			/* Déplacements correspondant au fou */
-			checkPosition(origin.getX() - n, origin.getY() + n, result);
-			checkPosition(origin.getX() + n, origin.getY() - n, result);
-			checkPosition(origin.getX() + n, origin.getY() + n, result);
-			checkPosition(origin.getX() - n, origin.getY() - n, result);
-			i++;
-			n++;
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY()	 , result);
 		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY()    , result);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX()    , origin.getY() - n, result);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX()    , origin.getY() + n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY() + n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY() + n, result);
+		}
+		
 		return result;
 	}
 	
 	private void checkPosition(int x, int y, List<Coordonnees> result) {
 		if (isInside(x,y)) {
+			
 			result.add(new Coordonnees(x, y));
 		}
 	}

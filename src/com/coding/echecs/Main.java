@@ -11,8 +11,10 @@ public class Main {
 				String representation = (piece == null) ? "--" : asString(piece);
 				line += " " + representation;
 			}
-			System.out.println(line);
+			System.out.println(y + " |" +line);
 		}
+		System.out.println("    -----------------------");
+		System.out.println("    0  1  2  3  4  5  6  7 ");
 	}
 	
 	private static String asString(Piece piece) {
