@@ -20,6 +20,7 @@ public class Tour extends Piece{
 		int n;
 		
 		for (n = 0; n <= 7; n++) {
+<<<<<<< HEAD
 			checkPosition(x - n, y, result, echiquier);
 		}
 		
@@ -33,6 +34,21 @@ public class Tour extends Piece{
 		
 		for (n = 0; n <= 7; n++) {
 			checkPosition(x, y + n, result, echiquier);
+=======
+			checkPosition(origin.getX() - n, origin.getY()	 , result, echiquier);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY()    , result, echiquier);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX()    , origin.getY() - n, result, echiquier);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX()    , origin.getY() + n, result, echiquier);
+>>>>>>> master
 		}
 		
 		return result;

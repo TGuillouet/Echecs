@@ -19,6 +19,7 @@ public class Reine extends Piece{
 			
 		int n;
 		
+<<<<<<< HEAD
 		for (n = 0; n <= 7; n++) {
 			checkPosition(x - n, y	 , result);
 		}
@@ -49,6 +50,40 @@ public class Reine extends Piece{
 		
 		for (n = 1; n <= 7; n++) {
 			checkPosition(x - n, y + n, result);
+=======
+		int n;
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY()	 , result);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY()    , result);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX()    , origin.getY() - n, result);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(origin.getX()    , origin.getY() + n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY() + n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY() + n, result);
+>>>>>>> master
 		}
 		
 		return result;
@@ -56,6 +91,7 @@ public class Reine extends Piece{
 	
 	private void checkPosition(int x, int y, List<Coordonnees> result) {
 		if (isInside(x,y)) {
+			
 			result.add(new Coordonnees(x, y));
 		}
 	}

@@ -20,6 +20,7 @@ public class Fou extends Piece{
 		int n;
 		
 		for (n = 1; n <= 7; n++) {
+<<<<<<< HEAD
 			checkPosition(x + n, y - n, result, echiquier);
 		}
 		
@@ -33,6 +34,21 @@ public class Fou extends Piece{
 		
 		for (n = 1; n <= 7; n++) {
 			checkPosition(x - n, y + n, result, echiquier);
+=======
+			checkPosition(origin.getX() + n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() + n, origin.getY() + n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY() - n, result);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(origin.getX() - n, origin.getY() + n, result);
+>>>>>>> master
 		}
 		
 		return result;
