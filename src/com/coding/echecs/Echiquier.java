@@ -4,11 +4,8 @@ import java.util.List;
 
 public class Echiquier {
 	private Piece echiquier[][] = new Piece[8][8]; // [y][x]
-	
-	public Echiquier (){
-		init();
-	}
-	
+	public static boolean isWhite = true;
+
 	public void init () {
 		for (int i = 0; i <= 7; i++) {
 			
@@ -47,25 +44,31 @@ public class Echiquier {
 		}
 	}
 	
-	public Piece getPieceEn(Coordonnees coord) {
-		return echiquier[coord.getY()][coord.getX()]; // Retour de l'échiquier 
+	public Piece getPieceEn(int x, int y) {
+		return echiquier[y][x]; // Retour de l'échiquier 
 	}
 	
-	public boolean moveTo(Coordonnees origin, Coordonnees destination) {
-		final Piece pieceABouger = getPieceEn(origin); // Récupération des coordonnées d'origine
-		final Echiquier e = new Echiquier();
+	public boolean moveTo(int xOrigin, int yOrigin, Coordonnees destination, Echiquier e) {
+		final Piece pieceABouger = getPieceEn(xOrigin, yOrigin); // Récupération des coordonnées d'origine
 		
 		if (pieceABouger == null) { return false; }
 		
-		List<Coordonnees> deplacementsPossibles = pieceABouger.canMove(origin, e); // Stockage des différents coups possibles
-		
+		List<Coordonnees> deplacementsPossibles = pieceABouger.canMove(xOrigin, yOrigin, e); // Stockage des différents coups possibles
+
 		// for (int i ; i <= deplacementsPossibles.size(); i++) { Coordonnees actual = deplacementsPossibles.get(i); ... }
 		for (Coordonnees actual : deplacementsPossibles) {
 			if(actual.equals(destination)) {
+				
+				if ((isWhite == true && pieceABouger.getColor() == Couleur.NOIR) || (isWhite == false && pieceABouger.getColor() == Couleur.BLANC))
+				{
+					break;
+				}
 				// Le déplacement est valide
 				//echiquier[destination.getY()][destination.getX()] = echiquier[origin.getY()][origin.getX()]; // Moins optimisé
 				echiquier[destination.getY()][destination.getX()] = pieceABouger; // Remplacement des coordonnees de la pièce
-				echiquier[origin.getY()][origin.getX()] = null; // On vide la cese d'origine de la pièce
+				echiquier[yOrigin][xOrigin] = null; // On vide la cese d'origine de la pièce
+				
+				isWhite = !isWhite;
 				return true;
 			}
 		}

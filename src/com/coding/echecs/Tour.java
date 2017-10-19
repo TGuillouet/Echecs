@@ -14,25 +14,43 @@ public class Tour extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
+	List<Coordonnees> canMove(int x, int y, Echiquier echiquier) {
 		final ArrayList<Coordonnees> result = new ArrayList<>();
 		
-		int n = 0;
+		int n;
 		
-		while (n <= 7) {
-			checkPosition(origin.getX() - n, origin.getY()	 , result);
-			checkPosition(origin.getX() + n, origin.getY()    , result);
-			checkPosition(origin.getX()    , origin.getY() - n, result);
-			checkPosition(origin.getX()    , origin.getY() + n, result);
-			n++;
+		for (n = 0; n <= 7; n++) {
+			checkPosition(x - n, y, result, echiquier);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(x + n, y, result, echiquier);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(x, y - n, result, echiquier);
+		}
+		
+		for (n = 0; n <= 7; n++) {
+			checkPosition(x, y + n, result, echiquier);
 		}
 		
 		return result;
+		
 	}
 	
-	private void checkPosition(int x, int y, List<Coordonnees> result) {
+	private void checkPosition(int x, int y, List<Coordonnees> result, Echiquier e) {
 		if (isInside(x,y)) {
-			result.add(new Coordonnees(x, y));
+			if(Echiquier.isWhite == true) {
+				if ( e.getPieceEn(x, y).getColor() == Couleur.NOIR)
+				{
+					result.add(new Coordonnees(x, y));
+					System.out.println("Je suis là");
+				}
+			} else {
+				if ((e.getPieceEn(x, y) == null || e.getPieceEn(x, y).getColor() == Couleur.BLANC))
+					result.add(new Coordonnees(x, y));
+			}
 		}
 	}
 }

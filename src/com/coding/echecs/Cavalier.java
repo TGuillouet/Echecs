@@ -13,17 +13,17 @@ public class Cavalier extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
+	List<Coordonnees> canMove(int x, int y, Echiquier echiquier) {
 		final ArrayList<Coordonnees> result = new ArrayList<>();
 		
-		checkPosition(origin.getX() - 1, origin.getY() - 2, result);
-		checkPosition(origin.getX() + 1, origin.getY() - 2, result);
-		checkPosition(origin.getX() - 1, origin.getY() + 2, result);
-		checkPosition(origin.getX() + 1, origin.getY() + 2, result);
-		checkPosition(origin.getX() - 2, origin.getY() - 1, result);
-		checkPosition(origin.getX() - 2, origin.getY() + 1, result);
-		checkPosition(origin.getX() + 2, origin.getY() - 1, result);
-		checkPosition(origin.getX() + 2, origin.getY() + 1, result);
+		checkPosition(x - 1, y - 2, result);
+		checkPosition(x + 1, y - 2, result);
+		checkPosition(x - 1, y + 2, result);
+		checkPosition(x + 1, y + 2, result);
+		checkPosition(x - 2, y - 1, result);
+		checkPosition(x - 2, y + 1, result);
+		checkPosition(x + 2, y - 1, result);
+		checkPosition(x + 2, y + 1, result);
 		
 		return result;
 	}

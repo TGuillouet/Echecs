@@ -1,42 +1,85 @@
 package com.coding.echecs;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 public class Main {
-	public static void main(String [] args) {
+	public static void main(String [] args) throws IOException {
+		
+		Scanner key = new Scanner(System.in);
+		
 		final Echiquier echiquier = new Echiquier();
 		
+		echiquier.init();
+		while (true) {
+		if (echiquier.isWhite == true) {
+			System.out.println("Au joueur blanc de jouer");
+		} else if (echiquier.isWhite == false) {
+			System.out.println("Au joueur noir de jouer");
+		}
 		for (int y = 0; y <= 7; y++) {
 			String line = "";
 			for(int x = 0; x <= 7; x++) {
-				final Piece piece = echiquier.getPieceEn(new Coordonnees(x, y));
-				String representation = (piece == null) ? "--" : asString(piece);
+				final Piece piece = echiquier.getPieceEn(x, y);
+				String representation = (piece == null) ? "♢" : asString(piece);
 				line += " " + representation;
 			}
-			System.out.println(line);
+			System.out.println(y + " |" + line);
 		}
-	}
+		System.out.println("  -----------------------");
+		System.out.println("    0  1  2  3  4  5  6  7 ");
+		
+		System.out.print("Entrez l'abscisse de votre pion : ");
+		int posX = key.nextInt();
+		System.out.print("Entrez l'ordonnée de votre pion : ");
+		int posY = key.nextInt();
+		System.out.print("Entrez le déplacement en abscisse : ");
+		int fPosX = key.nextInt();
+		System.out.print("Entrez le déplacement en ordonnée : ");
+		int fPosY = key.nextInt(); 
+		
+		Coordonnees dest = new Coordonnees(fPosX, fPosY);
+		
+		echiquier.moveTo(posX, posY, dest, echiquier);
+		System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+		}
+}
 	
 	private static String asString(Piece piece) {
 		String p = "";
-		String c = asString (piece.getColor()); 
 		if (piece instanceof Pion) {
-			p = "P";
+			if (piece.color == Couleur.BLANC)
+				p = "♟";
+			else
+				p = "♙";
 		} else if (piece instanceof Roi) {
-			p = "K";
+			if (piece.color == Couleur.BLANC)
+				p = "♚";
+			else
+				p = "♔";
 		} else if (piece instanceof Cavalier) {
-			p = "C";
+			if (piece.color == Couleur.BLANC)
+				p = "♞";
+			else
+				p = "♘";
 		} else if (piece instanceof Reine) {
-			p = "Q";
+			if (piece.color == Couleur.BLANC)
+				p = "♛";
+			else
+				p = "♕";
 		} else if (piece instanceof Tour) {
-			p = "T";
+			if (piece.color == Couleur.BLANC)
+				p = "♜";
+			else
+				p = "♖";
 		} else if (piece instanceof Fou) {
-			p = "F";
+			if (piece.color == Couleur.BLANC)
+				p = "♝";
+			else
+				p = "♗";
 		} else {
 			return null;
 		}
-		return p + c;
-	}
-	
-	private static String asString(Couleur couleur) {
-		return couleur == Couleur.BLANC ? "B" : "N";
+		return p;
 	}
 }

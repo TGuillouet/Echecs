@@ -14,24 +14,39 @@ public class Fou extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
+	List<Coordonnees> canMove(int x, int y, Echiquier echiquier) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
-		int n = 1;
-		while (n <= 7) {
-			checkPosition(origin.getX() + n, origin.getY() - n, result);
-			checkPosition(origin.getX() + n, origin.getY() + n, result);
-			checkPosition(origin.getX() - n, origin.getY() - n, result);
-			checkPosition(origin.getX() - n, origin.getY() + n, result);
-			n++;
+		int n;
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(x + n, y - n, result, echiquier);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(x + n, y + n, result, echiquier);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(x - n, y - n, result, echiquier);
+		}
+		
+		for (n = 1; n <= 7; n++) {
+			checkPosition(x - n, y + n, result, echiquier);
 		}
 		
 		return result;
 	}
 	
-	private void checkPosition(int x, int y, List<Coordonnees> result) {
+	private void checkPosition(int x, int y, List<Coordonnees> result, Echiquier e) {
 		if (isInside(x,y)) {
-			result.add(new Coordonnees(x, y));
+			if(e.isWhite == true) {
+				if ((e.getPieceEn(x, y) == null || e.getPieceEn(x, y).color == Couleur.NOIR))
+					result.add(new Coordonnees(x, y));
+			} else {
+				if ((e.getPieceEn(x, y) == null || e.getPieceEn(x, y).color == Couleur.BLANC))
+					result.add(new Coordonnees(x, y));
+			}
 		}
 	}
 }

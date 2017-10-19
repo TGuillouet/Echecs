@@ -14,17 +14,17 @@ public class Roi extends Piece{
 	}
 
 	@Override
-	List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier) {
+	List<Coordonnees> canMove(int x, int y, Echiquier echiquier) {
 		final List<Coordonnees> result = new ArrayList<>();
 		
-		checkPosition(origin.getX() - 1, origin.getY() - 1, result);
-		checkPosition(origin.getX() - 1, origin.getY()    , result);
-		checkPosition(origin.getX() - 1, origin.getY() + 1, result);
-		checkPosition(origin.getX()    , origin.getY() - 1, result);
-		checkPosition(origin.getX()    , origin.getY() + 1, result);
-		checkPosition(origin.getX() + 1, origin.getY() - 1, result);
-		checkPosition(origin.getX() + 1, origin.getY()    , result);
-		checkPosition(origin.getX() + 1, origin.getY() + 1, result);
+		checkPosition(x - 1, y - 1, result);
+		checkPosition(x - 1, y    , result);
+		checkPosition(x - 1, y + 1, result);
+		checkPosition(x    , y - 1, result);
+		checkPosition(x    , y + 1, result);
+		checkPosition(x + 1, y - 1, result);
+		checkPosition(x + 1, y    , result);
+		checkPosition(x + 1, y + 1, result);
 		
 		return result;
 	}

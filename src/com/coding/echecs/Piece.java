@@ -4,10 +4,10 @@ import java.util.List;
 
 public abstract class Piece {
 	/* Attributs */
-	private final Couleur color;
+	protected final Couleur color;
 		
 	/* Signatures de méthodes */
-	abstract List<Coordonnees> canMove(Coordonnees origin, Echiquier echiquier); // Liste avec une taille non fixe
+	abstract List<Coordonnees> canMove(int x, int y, Echiquier echiquier); // Liste avec une taille non fixe
 	
 	/* Constructeur */
 	protected Piece (Couleur pColor) {
